@@ -12,9 +12,29 @@ ventana.config(width=800, height=600)
 ventana.title("Aplicación con imagen")
 ventana.mainloop()
 
-imagen = Image.open("")
-imagen = imagen.resize((200, 200))
-imagen = ImageTk.PhotoImage(imagen)
+imagen1 = Image.open("resources/Recurso1")
+#imagen = imagen.resize((200, 200))
+imagen1 = ImageTk.PhotoImage(imagen1)
+
+imagen2 = Image.open("resources/Recurso2")
+#imagen = imagen.resize((200, 200))
+imagen2 = ImageTk.PhotoImage(imagen2)
+
+imagen3 = Image.open("resources/Recurso3")
+#imagen = imagen.resize((200, 200))
+imagen3 = ImageTk.PhotoImage(imagen3)
+
+imagen4 = Image.open("resources/Recurso4")
+#imagen = imagen.resize((200, 200))
+imagen4 = ImageTk.PhotoImage(imagen4)
+
+imagen5 = Image.open("resources/Recurso5")
+#imagen = imagen.resize((200, 200))
+imagen5 = ImageTk.PhotoImage(imagen5)
+
+imagen6 = Image.open("resources/Recurso6")
+#imagen = imagen.resize((200, 200))
+imagen6 = ImageTk.PhotoImage(imagen6)
 
 required_elves = 3
 required_reindeers = 9
