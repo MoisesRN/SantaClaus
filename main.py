@@ -2,6 +2,19 @@ from threading import Semaphore
 from threading import Thread
 from time import sleep
 from random import randint
+import tkinter as tk
+from tkinter import messagebox
+from tkinter import ttk
+from PIL import Image, ImageTk
+
+ventana = tk.Tk()
+ventana.config(width=800, height=600)
+ventana.title("Aplicación con imagen")
+ventana.mainloop()
+
+imagen = Image.open("")
+imagen = imagen.resize((200, 200))
+imagen = ImageTk.PhotoImage(imagen)
 
 required_elves = 3
 required_reindeers = 9
