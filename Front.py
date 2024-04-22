@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
 from PIL import Image, ImageTk
 
 # Función que se ejecutará cuando se presione el botón
@@ -8,7 +9,9 @@ def mostrar_mensaje():
 
 # Crear la ventana principal
 ventana = tk.Tk()
+ventana.config(width=800, height=600)
 ventana.title("Aplicación con imagen")
+ventana.mainloop()
 
 # Cargar la imagen
 imagen = Image.open("/Users/jimmycastellanos/Downloads/123.png")
