@@ -2,6 +2,19 @@ from threading import Semaphore
 from threading import Thread
 from time import sleep
 from random import randint
+import tkinter as tk
+from tkinter import messagebox
+from tkinter import ttk
+from PIL import Image, ImageTk
+
+ventana = tk.Tk()
+ventana.config(width=800, height=600)
+ventana.title("Aplicación con imagen")
+ventana.mainloop()
+
+imagen = Image.open("")
+imagen = imagen.resize((200, 200))
+imagen = ImageTk.PhotoImage(imagen)
 
 required_elves = 3
 required_reindeers = 9
@@ -58,3 +71,32 @@ def elves():
         else:
             elves_mutex.release()
         mutex.release()
+        print(f"Elf {elves_counter}")
+        sleep(randint(1, 2))
+        mutex.acquire()
+        if not elves_counter:
+            elves_mutex.release()
+        mutex.release()
+
+
+def reindeers():
+    global reindeer_counter, required_reindeers
+    while True:
+        mutex.acquire()
+        reindeer_counter += 1
+        if reindeer_counter == required_reindeers:
+            santa_semaphore.release()
+        mutex.release()
+        print(f"Reindeer {reindeer_counter}")
+        reindeer_semaphore.acquire()
+        sleep(randint(1, 2))
+
+
+if __name__ == "__main__":
+    santa_thread = Thread(target=santa)
+    elf_threads = Thread(target=elves)
+    reindeer_threads = Thread(target=reindeers)
+
+    santa_thread.start()
+    elf_threads.start()
+    reindeer_threads.start()
