@@ -1,40 +1,8 @@
-from threading import Semaphore
-from threading import Thread
-from time import sleep
+from threading import Semaphore, Thread
+from time import sleep, time
 from random import randint
 import tkinter as tk
-from tkinter import messagebox
-from tkinter import ttk
 from PIL import Image, ImageTk
-
-ventana = tk.Tk()
-ventana.config(width=800, height=600)
-ventana.title("Aplicación con imagen")
-ventana.mainloop()
-
-imagen1 = Image.open("resources/Recurso1")
-#imagen = imagen.resize((200, 200))
-imagen1 = ImageTk.PhotoImage(imagen1)
-
-imagen2 = Image.open("resources/Recurso2")
-#imagen = imagen.resize((200, 200))
-imagen2 = ImageTk.PhotoImage(imagen2)
-
-imagen3 = Image.open("resources/Recurso3")
-#imagen = imagen.resize((200, 200))
-imagen3 = ImageTk.PhotoImage(imagen3)
-
-imagen4 = Image.open("resources/Recurso4")
-#imagen = imagen.resize((200, 200))
-imagen4 = ImageTk.PhotoImage(imagen4)
-
-imagen5 = Image.open("resources/Recurso5")
-#imagen = imagen.resize((200, 200))
-imagen5 = ImageTk.PhotoImage(imagen5)
-
-imagen6 = Image.open("resources/Recurso6")
-#imagen = imagen.resize((200, 200))
-imagen6 = ImageTk.PhotoImage(imagen6)
 
 required_elves = 3
 required_reindeers = 9
@@ -112,7 +80,7 @@ def reindeers():
         sleep(randint(1, 2))
 
 
-if __name__ == "__main__":
+def run_program():
     santa_thread = Thread(target=santa)
     elf_threads = Thread(target=elves)
     reindeer_threads = Thread(target=reindeers)
@@ -120,3 +88,40 @@ if __name__ == "__main__":
     santa_thread.start()
     elf_threads.start()
     reindeer_threads.start()
+
+
+def main():
+    # Crear ventana
+    window = tk.Tk()
+    window.title("North Pole")
+
+    # Cargar imágenes
+    santa_image = Image.open("resources/Recurso1.png")
+    santa_photo = ImageTk.PhotoImage(santa_image)
+
+    elf_image = Image.open("resources/Recurso4.png")
+    elf_photo = ImageTk.PhotoImage(elf_image)
+
+    reindeer_image = Image.open("resources/Recurso3.png")
+    reindeer_photo = ImageTk.PhotoImage(reindeer_image)
+
+    # Mostrar imágenes en etiquetas
+    santa_label = tk.Label(window, image=santa_photo)
+    santa_label.pack()
+
+    elf_label = tk.Label(window, image=elf_photo)
+    elf_label.pack()
+
+    reindeer_label = tk.Label(window, image=reindeer_photo)
+    reindeer_label.pack()
+
+    # Ejecutar programa en un hilo
+    program_thread = Thread(target=run_program)
+    program_thread.start()
+
+    # Ejecutar bucle principal de la ventana
+    window.mainloop()
+
+
+if __name__ == "__main__":
+    main()
