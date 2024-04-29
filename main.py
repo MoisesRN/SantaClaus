@@ -90,30 +90,70 @@ def run_program():
     reindeer_threads.start()
 
 
+santa_image = Image.open("resources/Recurso2.png")
+santa_sleep_image = Image.open("resources/Recurso1.png")
+elf_image = Image.open("resources/Recurso4.png")
+reindeer_image = Image.open("resources/Recurso3.png")
+
+rs_santa_image = santa_image.resize((200,200))
+rs_santa_sleep_image = santa_sleep_image.resize((200,200))
+rs_elf_image = elf_image.resize((50,50))
+rs_reindeer_image = reindeer_image.resize((50,50))
+
+
+
 def main():
     # Crear ventana
     window = tk.Tk()
     window.title("North Pole")
+    window.geometry("720x720")
 
     # Cargar imágenes
-    santa_image = Image.open("resources/Recurso1.png")
-    santa_photo = ImageTk.PhotoImage(santa_image)
 
-    elf_image = Image.open("resources/Recurso4.png")
-    elf_photo = ImageTk.PhotoImage(elf_image)
+    # Crear marcos para los bloques de imágenes
+    elves_frame = tk.Frame(window)
+    reindeers_frame = tk.Frame(window)
+    santa_frame = tk.Frame(window)
 
-    reindeer_image = Image.open("resources/Recurso3.png")
-    reindeer_photo = ImageTk.PhotoImage(reindeer_image)
+    # Organizar los marcos verticalmente
+    elves_frame.pack(side="left",  padx=50)
+    reindeers_frame.pack(side="left",  padx=50)
+    santa_frame.pack(side="left",  padx=50)
+    
+    santa_photo = ImageTk.PhotoImage(rs_santa_image)
 
+    
+    elf_photo = ImageTk.PhotoImage(rs_elf_image)
+
+    
+    reindeer_photo = ImageTk.PhotoImage(rs_reindeer_image)
+
+    tk.Label(elves_frame, image=elf_photo).pack(side="top")
+    tk.Label(reindeers_frame, image=reindeer_photo).pack(side="top")
+    tk.Label(santa_frame, image=santa_photo).pack(side="top")
+
+    """for _ in range(1):
+        tk.Label(elves_frame, image=elf_photo).pack(side="top")
+        tk.Label(reindeers_frame, image=reindeer_photo).pack(side="top")"""
+
+    def add_elf():
+        elves_counter[0] += 1
+        tk.Label(elves_frame, image=elf_photo).pack(side="top")
+        window.after(1000, add_elf)
+
+    # Programar la adición periódica de elfos
+    window.after(1000, add_elf)
+    """""
     # Mostrar imágenes en etiquetas
     santa_label = tk.Label(window, image=santa_photo)
-    santa_label.pack()
+    santa_label.pack(side = "left")
 
     elf_label = tk.Label(window, image=elf_photo)
-    elf_label.pack()
+    elf_label.pack(side = "left")
 
     reindeer_label = tk.Label(window, image=reindeer_photo)
-    reindeer_label.pack()
+    reindeer_label.pack(side = "left")
+    """
 
     # Ejecutar programa en un hilo
     program_thread = Thread(target=run_program)
