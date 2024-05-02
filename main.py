@@ -4,8 +4,8 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import random
 
-required_elves = 3
-required_reindeers = 9
+required_elves = 4
+required_reindeers = 10
 elves_counter = 0
 reindeer_counter = 0
 
