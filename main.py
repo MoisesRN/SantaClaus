@@ -144,9 +144,9 @@ def main():
             reindeer_labels.append(reindeer_label)
 
         if elves_counter == 3:
-            santa_label.config(image=santa_photo2)
-        elif reindeer_counter == 9:
             santa_label.config(image=santa_photo3)
+        elif reindeer_counter == 9:
+            santa_label.config(image=santa_photo2)
         elif elves_counter == 0 or reindeer_counter == 0:
             santa_label.config(image=santa_photo1)
 
