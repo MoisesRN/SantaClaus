@@ -94,16 +94,19 @@ def main():
     # Cargar imágenes
     santa_image1 = Image.open("resources/Recurso1.png")
     santa_image2 = Image.open("resources/Recurso2.png")
+    santa_image3 = Image.open("resources/Santa.png")
     elf_image = Image.open("resources/Recurso4.png")
     reindeer_image = Image.open("resources/Recurso3.png")
 
     rs_santa_image1 = santa_image1.resize((200, 200))
     rs_santa_image2 = santa_image2.resize((200, 200))
+    rs_santa_image3 = santa_image3.resize((200, 200))
     rs_elf_image = elf_image.resize((50, 50))
     rs_reindeer_image = reindeer_image.resize((50, 50))
 
     santa_photo1 = ImageTk.PhotoImage(rs_santa_image1)
     santa_photo2 = ImageTk.PhotoImage(rs_santa_image2)
+    santa_photo3 = ImageTk.PhotoImage(rs_santa_image3)
     elf_photo = ImageTk.PhotoImage(rs_elf_image)
     reindeer_photo = ImageTk.PhotoImage(rs_reindeer_image)
 
@@ -140,8 +143,10 @@ def main():
             reindeer_label.pack(side="top")
             reindeer_labels.append(reindeer_label)
 
-        if elves_counter == 3 or reindeer_counter == 9:
+        if elves_counter == 3:
             santa_label.config(image=santa_photo2)
+        elif reindeer_counter == 9:
+            santa_label.config(image=santa_photo3)
         elif elves_counter == 0 or reindeer_counter == 0:
             santa_label.config(image=santa_photo1)
 
